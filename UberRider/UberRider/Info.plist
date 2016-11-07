@@ -41,6 +41,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We Need To Know Your Location In Order To Send The Uber</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 </dict>

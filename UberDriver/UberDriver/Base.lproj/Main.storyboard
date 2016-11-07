@@ -71,10 +71,10 @@
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
-        <!--View Controller-->
+        <!--DriverVC-->
         <scene sceneID="vhb-H3-LWQ">
             <objects>
-                <viewController id="Tnf-7U-5C5" sceneMemberID="viewController">
+                <viewController id="Tnf-7U-5C5" customClass="DriverVC" customModule="UberDriver" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yzc-Nv-gK1"/>
                         <viewControllerLayoutGuide type="bottom" id="mtj-uj-fEw"/>
@@ -88,7 +88,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Driver" id="BQu-eU-jIi">
-                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="27Q-0t-5kB"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="27Q-0t-5kB">
+                                            <connections>
+                                                <action selector="logOut:" destination="Tnf-7U-5C5" id="TAJ-Vm-btd"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -100,10 +104,16 @@
                                 <rect key="frame" x="145" y="349" width="85" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel Uber"/>
+                                <connections>
+                                    <action selector="cancelUber:" destination="Tnf-7U-5C5" eventType="touchUpInside" id="z5d-UR-5Xm"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="myMap" destination="DeZ-ew-8Tb" id="Bcb-qM-D51"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6b3-oJ-C3X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

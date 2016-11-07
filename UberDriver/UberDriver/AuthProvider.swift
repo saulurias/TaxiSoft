@@ -1,6 +1,6 @@
 //
 //  AuthProvider.swift
-//  UberDriver
+//  UberRider
 //
 //  Created by saul ulises urias guzmàn on 04/11/16.
 //  Copyright © 2016 saul ulises urias guzmàn. All rights reserved.
@@ -11,7 +11,7 @@ import FirebaseAuth
 
 typealias LoginHandler = (_ msg: String?) -> Void
 
-struct LoginErrorCode{
+struct LoginErrorCode {
     static let INVALID_EMAIL = "Invalid Email Adress, Please Provide A Real Email Adress"
     static let WRONG_PASSWORD = "Wrong Password, Please Enter The Correct Password"
     static let PROBLEM_CONNECTING = "Problem Connecting To Database, Please Try Later"
@@ -26,7 +26,7 @@ class AuthProvider {
     static var Instance: AuthProvider {
         return _instance
     }
-
+    
     
     func login(withEmail: String, password: String, loginHandler: LoginHandler?){
         
@@ -37,42 +37,78 @@ class AuthProvider {
             }else{
                 loginHandler?(nil);
             }
-                
             
-        })//Login Func
-    }
-        private func handleErrors(err: NSError, loginHandler: LoginHandler?){
-            if let errCode = FIRAuthErrorCode(rawValue: err.code){
-                switch errCode {
-                case .errorCodeWrongPassword:
-                    loginHandler?(LoginErrorCode.WRONG_PASSWORD)
-                     break
+            
+        })
+    }//Login Func
+    
+    func logOut() -> Bool{
+        if FIRAuth.auth()?.currentUser != nil {
+            do {
+                try FIRAuth.auth()?.signOut()
+                return true
+            } catch {
+                return false
+            }
+        }
+        
+        return true
+    }//Logout Func
+    
+    
+    func signUp(withEmail:String, password:String, loginHandler:LoginHandler?){
+        FIRAuth.auth()?.createUser(withEmail: withEmail, password: password, completion: { (user, error) in
+            
+            if error != nil {
+                self.handleErrors(err: error as! NSError , loginHandler: loginHandler)
+            } else{
                 
-                case .errorCodeInvalidEmail:
-                    loginHandler?(LoginErrorCode.INVALID_EMAIL)
-                    break
+                if user?.uid != nil {
+                    //Store user to database
+                    DBProvider.Instance.saveUser(withID: user!.uid, email: withEmail, password: password)
+                    
+                    //login the user
+                    self.login(withEmail: withEmail, password: password, loginHandler: loginHandler)
+                }
                 
-                case .errorCodeUserNotFound:
-                    loginHandler?(LoginErrorCode.USER_NOT_FOUND)
-                    break
-                    
-                case .errorCodeEmailAlreadyInUse:
-                    loginHandler?(LoginErrorCode.EMAIL_ALREADY_IN_USE)
-                    break
-                    
-                case .errorCodeWeakPassword:
-                    loginHandler?(LoginErrorCode.WEAK_PASSWORD)
-                    break
-                    
-                default:
-                    loginHandler?(LoginErrorCode.PROBLEM_CONNECTING)
-                    print("Error Encontrado: \(errCode.rawValue)")
-                    break
+            }
+            
+        })
+    }//signUp function
+    
+    private func handleErrors(err: NSError, loginHandler: LoginHandler?){
+        if let errCode = FIRAuthErrorCode(rawValue: err.code){
+            switch errCode {
+            case .errorCodeWrongPassword:
+                loginHandler?(LoginErrorCode.WRONG_PASSWORD)
+                break
+                
+            case .errorCodeInvalidEmail:
+                loginHandler?(LoginErrorCode.INVALID_EMAIL)
+                break
+                
+            case .errorCodeUserNotFound:
+                loginHandler?(LoginErrorCode.USER_NOT_FOUND)
+                break
+                
+            case .errorCodeEmailAlreadyInUse:
+                loginHandler?(LoginErrorCode.EMAIL_ALREADY_IN_USE)
+                break
+                
+            case .errorCodeWeakPassword:
+                loginHandler?(LoginErrorCode.WEAK_PASSWORD)
+                break
+                
+            default:
+                loginHandler?(LoginErrorCode.PROBLEM_CONNECTING)
+                print("Error Encontrado: \(errCode.rawValue.description)")
+                break
             }
         }
     } //handlErrors Func
     
     
+    
+    
 }//Class
-
 

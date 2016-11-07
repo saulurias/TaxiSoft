@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		468CCA98061CF6EA4A3586AD /* Pods_UberRider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB480BECF005AB558875175 /* Pods_UberRider.framework */; };
+		B4492D1D1DD01DC3007EFCDB /* UberHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4492D1C1DD01DC3007EFCDB /* UberHandler.swift */; };
+		B46F17321DCFE1360011A6F6 /* RiderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46F17311DCFE1360011A6F6 /* RiderVC.swift */; };
+		B46F17371DCFF1040011A6F6 /* DBProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46F17361DCFF1040011A6F6 /* DBProvider.swift */; };
+		B46F17391DCFF1E40011A6F6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46F17381DCFF1E40011A6F6 /* Constants.swift */; };
 		B46FFCD21DCE8847005F26B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B46FFCD11DCE8847005F26B6 /* GoogleService-Info.plist */; };
 		B4BC2FD71DCD5C55001E5BEE /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BC2FD61DCD5C55001E5BEE /* SignInVC.swift */; };
 		B4BC2FE61DCD6F60001E5BEE /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BC2FE51DCD6F60001E5BEE /* AuthProvider.swift */; };
@@ -19,6 +23,10 @@
 
 /* Begin PBXFileReference section */
 		5349D612ECE66971703D5C3D /* Pods-UberRider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberRider.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UberRider/Pods-UberRider.debug.xcconfig"; sourceTree = "<group>"; };
+		B4492D1C1DD01DC3007EFCDB /* UberHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UberHandler.swift; sourceTree = "<group>"; };
+		B46F17311DCFE1360011A6F6 /* RiderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderVC.swift; sourceTree = "<group>"; };
+		B46F17361DCFF1040011A6F6 /* DBProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBProvider.swift; sourceTree = "<group>"; };
+		B46F17381DCFF1E40011A6F6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B46FFCD11DCE8847005F26B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4BC2FD61DCD5C55001E5BEE /* SignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		B4BC2FE51DCD6F60001E5BEE /* AuthProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
@@ -74,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				B4BC2FD61DCD5C55001E5BEE /* SignInVC.swift */,
+				B46F17311DCFE1360011A6F6 /* RiderVC.swift */,
 			);
 			name = Controller;
 			path = ..;
@@ -83,6 +92,9 @@
 			isa = PBXGroup;
 			children = (
 				B4BC2FE51DCD6F60001E5BEE /* AuthProvider.swift */,
+				B46F17361DCFF1040011A6F6 /* DBProvider.swift */,
+				B46F17381DCFF1E40011A6F6 /* Constants.swift */,
+				B4492D1C1DD01DC3007EFCDB /* UberHandler.swift */,
 			);
 			name = Plugins;
 			sourceTree = "<group>";
@@ -263,7 +275,11 @@
 			files = (
 				B4BC2FE61DCD6F60001E5BEE /* AuthProvider.swift in Sources */,
 				B4BC2FD71DCD5C55001E5BEE /* SignInVC.swift in Sources */,
+				B46F17371DCFF1040011A6F6 /* DBProvider.swift in Sources */,
 				B4E91C851DC5303000FF44DA /* AppDelegate.swift in Sources */,
+				B4492D1D1DD01DC3007EFCDB /* UberHandler.swift in Sources */,
+				B46F17321DCFE1360011A6F6 /* RiderVC.swift in Sources */,
+				B46F17391DCFF1E40011A6F6 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

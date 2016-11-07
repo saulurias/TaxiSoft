@@ -64,16 +64,17 @@
                     <connections>
                         <outlet property="emailTextField" destination="ONr-eH-gbp" id="Q6d-2Y-4kY"/>
                         <outlet property="passwordTextField" destination="Jqw-8d-hr3" id="dpA-cd-U1T"/>
+                        <segue destination="gux-ea-SwM" kind="show" identifier="RiderVC" id="eQg-sv-ClS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
-        <!--View Controller-->
+        <!--RiderVC-->
         <scene sceneID="i55-Di-RnQ">
             <objects>
-                <viewController id="gux-ea-SwM" sceneMemberID="viewController">
+                <viewController id="gux-ea-SwM" customClass="RiderVC" customModule="UberRider" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dZg-yZ-Fg2"/>
                         <viewControllerLayoutGuide type="bottom" id="AKc-7g-RoN"/>
@@ -87,7 +88,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Rider" id="YKT-bN-tRP">
-                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="65j-ug-kyJ"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="65j-ug-kyJ">
+                                            <connections>
+                                                <action selector="logout:" destination="gux-ea-SwM" id="Neh-qn-yts"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -99,10 +104,17 @@
                                 <rect key="frame" x="155" y="365" width="64" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Call Uber"/>
+                                <connections>
+                                    <action selector="callUber:" destination="gux-ea-SwM" eventType="touchUpInside" id="cpT-uS-vS4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="callUberBtn" destination="OZh-gj-dgA" id="g61-pW-2qd"/>
+                        <outlet property="myMap" destination="ezZ-r6-bFk" id="BHd-gb-aMJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WZF-Zo-6nR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

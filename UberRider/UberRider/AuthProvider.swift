@@ -39,8 +39,43 @@ class AuthProvider {
             }
             
             
-        })//Login Func
-    }
+        })
+    }//Login Func
+    
+    func logOut() -> Bool{
+        if FIRAuth.auth()?.currentUser != nil {
+            do {
+                try FIRAuth.auth()?.signOut()
+                return true
+            } catch {
+                return false
+            }
+        }
+        
+        return true
+    }//Logout Func
+    
+    
+    func signUp(withEmail:String, password:String, loginHandler:LoginHandler?){
+        FIRAuth.auth()?.createUser(withEmail: withEmail, password: password, completion: { (user, error) in
+            
+            if error != nil {
+                self.handleErrors(err: error as! NSError , loginHandler: loginHandler)
+            } else{
+                
+                if user?.uid != nil {
+                    //Store user to database
+                    DBProvider.Instance.saveUser(withID: user! .uid, email: withEmail, password: password)
+                    
+                    //login the user
+                    self.login(withEmail: withEmail, password: password, loginHandler: loginHandler)
+                }
+                
+            }
+            
+        })
+    }//signUp function
+
     private func handleErrors(err: NSError, loginHandler: LoginHandler?){
         if let errCode = FIRAuthErrorCode(rawValue: err.code){
             switch errCode {
@@ -71,6 +106,8 @@ class AuthProvider {
             }
         }
     } //handlErrors Func
+    
+    
     
     
 }//Class

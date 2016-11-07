@@ -10,6 +10,7 @@ import UIKit
 
 class SignInVC: UIViewController {
 
+    private let RIDER_SEGUE = "RiderVC"
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -21,21 +22,44 @@ class SignInVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func logIn(_ sender: Any) {
+
         if emailTextField.text != "" && passwordTextField.text != "" {
             AuthProvider.Instance.login(withEmail: emailTextField.text!, password: passwordTextField.text!, loginHandler: { (message) in
                 if message != nil{
                     self.alertTheUser(title: "Problem With Authentication", message: message!)
                 }else{
+                    UberHandler.Instance.rider = self.emailTextField.text!
+                    self.emailTextField.text = ""
+                    self.emailTextField.text = ""
+                    self.performSegue(withIdentifier: self.RIDER_SEGUE, sender: nil)
                     print("Login Completed")
                 }
             })
+        } else {
+            
+            alertTheUser(title: "Email And Password Are Required", message: "Please enter email and password")
         }
 
     }
 
     @IBAction func signUp(_ sender: Any) {
-    }
+        if emailTextField.text != "" && passwordTextField.text != "" {
+            AuthProvider.Instance.signUp(withEmail: emailTextField.text!, password: passwordTextField.text!, loginHandler: { (message) in
+                
+                if message != nil {
+                    self.alertTheUser(title: "Problem With Creating A New User", message: message!)
+                } else{
+                    self.performSegue(withIdentifier: self.RIDER_SEGUE, sender: nil)
+                    print("Created User Completed")
+                }
+                
+            })
+        }else {
+            alertTheUser(title: "Email And Password Are Required", message: "Please enter email and password")
+        }
 
+    } 
+    
     private func alertTheUser(title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
